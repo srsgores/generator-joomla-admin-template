@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<extension version = "3.1" type = "template" client = "administrator">
+	<name><%= _.slugify(name)%></name>
+	<creationDate><%= currentDate %></creationDate>
+	<author><%= authorName %></author>
+	<authorEmail><%= authorEmail %></authorEmail>
+	<authorUrl><%= authorURL %></authorUrl>
+	<copyright>Copyright <%= currentDate %></copyright>
+	<license><%= license %></license>
+	<version>1.0.0</version>
+	<!-- Description contents contained in separate language file: see languages folder -->
+	<description>TPL_<%= _.slugify(name).toUpperCase() %>_XML_DESCRIPTION</description>
+	<files>
+		<filename>component.php</filename>
+		<filename>cpanel.php</filename>
+		<filename>favicon.ico</filename>
+		<filename>index.php</filename>
+		<filename>login.php</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_preview.png</filename>
+		<filename>template_thumbnail.png</filename>
+		<folder>html</folder>
+		<folder>scripts</folder>
+		<folder>language</folder>
+		<folder>styles</folder>
+	</files>
+	<positions>
+		<position>menu</position>
+		<position>submenu</position>
+		<position>toolbar</position>
+		<position>title</position>
+		<position>status</position>
+		<position>icon</position>
+		<position>cp_shell</position>
+		<position>cpanel</position>
+		<position>bottom</position>
+		<position>footer</position>
+		<position>login</position>
+		<position>debug</position>
+	</positions>
+	<languages folder = "language">
+		<language tag = "en-GB">en-GB/en-GB.tpl_<%= _.slugify(name)%>.ini</language>
+		<language tag = "en-GB">en-GB/en-GB.tpl_<%= _.slugify(name)%>.sys.ini</language>
+	</languages>
+	<config>
+		<fields name = "params">
+			<fieldset name = "advanced">
+
+				<field name = "templateColor" class = "" type = "color" default = "#13294A"
+					   validate = "color"
+					   label = "TPL_ISIS_COLOR_LABEL"
+					   description = "TPL_ISIS_COLOR_DESC"/>
+
+				<field name = "headerColor" class = "" type = "color" default = "#184A7D"
+					   validate = "color"
+					   label = "TPL_ISIS_COLOR_HEADER_LABEL"
+					   description = "TPL_ISIS_COLOR_HEADER_DESC"/>
+
+				<field name = "sidebarColor" class = "" type = "color" default = "#0088CC"
+					   validate = "color"
+					   label = "TPL_ISIS_COLOR_SIDEBAR_LABEL"
+					   description = "TPL_ISIS_COLOR_SIDEBAR_DESC"/>
+
+				<field name = "logoFile" class = "" type = "media" default = ""
+					   label = "TPL_ISIS_LOGO_LABEL"
+					   description = "TPL_ISIS_LOGO_DESC"/>
+
+				<field name = "admin_menus" type = "radio"
+					   class = "btn-group btn-group-yesno"
+					   default = "1"
+					   label = "TPL_ISIS_FIELD_ADMIN_MENUS_LABEL"
+					   description = "TPL_ISIS_FIELD_ADMIN_MENUS_DESC"
+					   filter = "integer">
+					<option
+							value = "1">JYES
+					</option>
+					<option
+							value = "0">JNO
+					</option>
+				</field>
+
+				<field name = "displayHeader" type = "radio"
+					   class = "btn-group btn-group-yesno"
+					   default = "1"
+					   label = "TPL_ISIS_HEADER_LABEL"
+					   description = "TPL_ISIS_HEADER_DESC"
+					   filter = "integer">
+					<option
+							value = "1">JYES
+					</option>
+					<option
+							value = "0">JNO
+					</option>
+				</field>
+
+				<field name = "statusFixed" type = "list"
+					   default = "1"
+					   label = "TPL_ISIS_STATUS_LABEL"
+					   description = "TPL_ISIS_STATUS_DESC"
+					   filter = "integer">
+					<option
+							value = "1">TPL_ISIS_STATUS_BOTTOM
+					</option>
+					<option
+							value = "0">TPL_ISIS_STATUS_TOP
+					</option>
+				</field>
+
+				<field name = "stickyToolbar" type = "radio"
+					   class = "btn-group btn-group-yesno"
+					   default = "1"
+					   label = "TPL_ISIS_STICKY_LABEL"
+					   description = "TPL_ISIS_STICKY_DESC"
+					   filter = "integer">
+					<option
+							value = "1">JYES
+					</option>
+					<option
+							value = "0">JNO
+					</option>
+				</field>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>

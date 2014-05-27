@@ -45,8 +45,8 @@
           message: "Describe your component",
           "default": "A sample description"
         }, {
-          name: "componentName",
-          message: "What's the component's name?",
+          name: "name",
+          message: "What's the template's name?",
           "default": "default-value"
         }, {
           name: "authorName",
@@ -79,7 +79,6 @@
         }
       ];
       return this.prompt(prompts, (function(props) {
-        this.someOption = props.someOption;
         this.description = props.description;
         this.name = props.name;
         this.authorName = props.authorName;
@@ -103,6 +102,23 @@
     projectfiles: function() {
       this.copy("editorconfig", ".editorconfig");
       return this.copy("jshintrc", ".jshintrc");
+    },
+    createLanguageFiles: function() {
+      this.template("language/en-GB/_en-GB.tpl_template-name.ini", "languages/en-GB/en-GB.tpl_" + this._.slugify(this.name) + ".ini");
+      return this.template("language/en-GB/_en-GB.tpl_template-name.sys.ini", "languages/en-GB/en-GB.tpl_" + this._.slugify(this.name) + ".sys.ini");
+    },
+    createTemplateInfoFiles: function() {
+      return this.template("_templateDetails.xml", "templateDetails.xml");
+    },
+    createEmptyMVCFolders: function() {
+      var folders;
+      folders = ["css", "scripts", "styles", "html"];
+      return folders.forEach((function(_this) {
+        return function(folderName) {
+          _this.mkdir(folderName);
+          return _this.template("_index.html", folderName + "/index.html");
+        };
+      })(this));
     }
   });
 

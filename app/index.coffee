@@ -36,8 +36,8 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 				default: "A sample description"
 			}
 			{
-				name: "componentName"
-				message: "What's the component's name?"
+				name: "name"
+				message: "What's the template's name?"
 				default: "default-value"
 			}
 			{
@@ -77,7 +77,6 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 			}
 		]
 		@prompt prompts, ((props) ->
-			@someOption = props.someOption
 			@description = props.description
 			@name = props.name
 			@authorName = props.authorName
@@ -101,6 +100,22 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 	projectfiles: ->
 		@copy "editorconfig", ".editorconfig"
 		@copy "jshintrc", ".jshintrc"
+	createLanguageFiles: ->
+		@template "language/en-GB/_en-GB.tpl_template-name.ini", "languages/en-GB/en-GB.tpl_" + @_.slugify(@name) + ".ini"
+		@template "language/en-GB/_en-GB.tpl_template-name.sys.ini", "languages/en-GB/en-GB.tpl_" + @_.slugify(@name) + ".sys.ini"
+
+	createTemplateInfoFiles: ->
+		@template "_templateDetails.xml", "templateDetails.xml"
+	createEmptyMVCFolders: ->
+		folders = [
+			"css"
+			"scripts"
+			"styles"
+			"html"
+		]
+		folders.forEach (folderName) =>
+			@mkdir folderName
+			@template "_index.html", folderName + "/index.html"
 )
 
 module.exports = JoomlaAdminTemplateGenerator
