@@ -72,13 +72,22 @@
       ];
       return this.prompt(prompts, (function(props) {
         this.someOption = props.someOption;
+        this.description = props.description;
+        this.name = props.name;
+        this.authorName = props.authorName;
+        this.authorEmail = props.authorEmail;
+        this.authorURL = props.authorURL;
+        this.license = props.license;
+        this.requireManageRights = props.requireManageRights;
+        this.sassBoilerplate = props.sassBoilerplate;
+        this.currentDate = "September 11, 2003";
         return done();
       }).bind(this));
     },
     app: function() {
       this.mkdir("app");
       this.mkdir("app/templates");
-      this.copy("_package.json", "package.json");
+      this.template("_package.json", "package.json");
       return this.copy("_bower.json", "bower.json");
     },
     projectfiles: function() {

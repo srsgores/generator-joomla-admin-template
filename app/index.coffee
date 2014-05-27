@@ -68,13 +68,22 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 		]
 		@prompt prompts, ((props) ->
 			@someOption = props.someOption
+			@description = props.description
+			@name = props.name
+			@authorName = props.authorName
+			@authorEmail = props.authorEmail
+			@authorURL = props.authorURL
+			@license = props.license
+			@requireManageRights = props.requireManageRights
+			@sassBoilerplate = props.sassBoilerplate
+			@currentDate = "September 11, 2003"
 			done()
 		).bind(this)
 
 	app: ->
 		@mkdir "app"
 		@mkdir "app/templates"
-		@copy "_package.json", "package.json"
+		@template "_package.json", "package.json"
 		@copy "_bower.json", "bower.json"
 
 	projectfiles: ->

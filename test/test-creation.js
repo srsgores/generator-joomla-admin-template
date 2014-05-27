@@ -32,9 +32,16 @@
     });
     return it("creates expected files", function(done) {
       var expected;
-      expected = [".jshintrc", ".editorconfig"];
+      expected = [".jshintrc", ".editorconfig", "package.json"];
       helpers.mockPrompt(this.app, {
-        someOption: true
+        someOption: true,
+        description: "A sample description",
+        name: "A template name",
+        authorName: "Test author name",
+        authorEmail: "testemail@gmail.com",
+        authorURL: "testauthor@testauthor.com",
+        license: "MIT",
+        sassBoilerplate: true
       });
       this.app.options["skip-install"] = true;
       return this.app.run({}, function() {

@@ -28,10 +28,17 @@ describe "joomla-admin-template generator", ->
 			# add files you expect to exist here.
 			".jshintrc"
 			".editorconfig"
+			"package.json"
 		]
 		helpers.mockPrompt @app,
 			someOption: true
-
+			description: "A sample description",
+			name: "A template name",
+			authorName: "Test author name",
+			authorEmail: "testemail@gmail.com",
+			authorURL: "testauthor@testauthor.com",
+			license: "MIT",
+			sassBoilerplate: true
 		@app.options["skip-install"] = true
 		@app.run {}, ->
 			helpers.assertFile expected

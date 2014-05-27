@@ -1,5 +1,19 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+	"name": "<%= _.slugify(name) %>",
+	"description": "<%= description %>",
+	"templateName": "<%= name %>",
+	"author":  {
+		"name": "<%= authorName %>",
+		"email": "<%= authorEmail %>",
+		"url": "<%= authorURL %>"
+	},
+	"licenses": [
+		{
+			"type": "<%= license %>"
+		}
+	],
+	"repository": "",
+	"readme": "<%= description %>",
+	"version": "1.0.0",
+	"dependencies": {}
 }
