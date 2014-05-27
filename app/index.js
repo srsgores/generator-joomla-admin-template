@@ -66,6 +66,14 @@
           "default": "MIT"
         }, {
           type: "confirm",
+          name: "includejQuery",
+          message: "Use jQuery?"
+        }, {
+          type: "confirm",
+          name: "includeModernizr",
+          message: "Use modernizr?"
+        }, {
+          type: "confirm",
           name: "sassBoilerplate",
           message: "Use my sass boilerplate to quickly create base styles?"
         }
@@ -80,6 +88,8 @@
         this.license = props.license;
         this.requireManageRights = props.requireManageRights;
         this.sassBoilerplate = props.sassBoilerplate;
+        this.includejQuery = props.includejQuery;
+        this.includeModernizr = props.includeModernizr;
         this.currentDate = "September 11, 2003";
         return done();
       }).bind(this));

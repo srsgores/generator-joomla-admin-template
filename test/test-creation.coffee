@@ -39,6 +39,8 @@ describe "joomla-admin-template generator", ->
 			authorURL: "testauthor@testauthor.com",
 			license: "MIT",
 			sassBoilerplate: true
+			includejQuery: true
+			includeModernizr: true
 		@app.options["skip-install"] = true
 		@app.run {}, ->
 			helpers.assertFile expected

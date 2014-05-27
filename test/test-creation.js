@@ -41,7 +41,9 @@
         authorEmail: "testemail@gmail.com",
         authorURL: "testauthor@testauthor.com",
         license: "MIT",
-        sassBoilerplate: true
+        sassBoilerplate: true,
+        includejQuery: true,
+        includeModernizr: true
       });
       this.app.options["skip-install"] = true;
       return this.app.run({}, function() {

@@ -61,6 +61,16 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 				default: "MIT"
 			}
 			{
+				type: "confirm",
+				name: "includejQuery",
+				message: "Use jQuery?"
+			}
+			{
+				type: "confirm",
+				name: "includeModernizr",
+				message: "Use modernizr?"
+			}
+			{
 				type: "confirm"
 				name: "sassBoilerplate"
 				message: "Use my sass boilerplate to quickly create base styles?"
@@ -76,6 +86,8 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 			@license = props.license
 			@requireManageRights = props.requireManageRights
 			@sassBoilerplate = props.sassBoilerplate
+			@includejQuery = props.includejQuery
+			@includeModernizr = props.includeModernizr
 			@currentDate = "September 11, 2003"
 			done()
 		).bind(this)
