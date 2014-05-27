@@ -30,10 +30,41 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 		# Have Yeoman greet the user.
 		@log yosay("Welcome to the marvelous JoomlaAdminTemplate generator!")
 		prompts = [
-			type: "confirm"
-			name: "someOption"
-			message: "Would you like to enable this option?"
-			default: true
+			{
+				name: "description"
+				message: "Describe your component"
+				default: "A sample description"
+			}
+			{
+				name: "componentName"
+				message: "What's the component's name?"
+				default: "default-value"
+			}
+			{
+				name: "authorName"
+				message: "What's your name?"
+				default: "Author name"
+			}
+			{
+				name: "authorEmail"
+				message: "What's your e-mail?"
+				default: "email@somedomain.com"
+			}
+			{
+				name: "authorURL"
+				message: "What's your website?"
+				default: "somedomain.com"
+			}
+			{
+				name: "license"
+				message: "What's the copyright license?"
+				default: "MIT"
+			}
+			{
+				type: "confirm"
+				name: "sassBoilerplate"
+				message: "Use my sass boilerplate to quickly create base styles?"
+			}
 		]
 		@prompt prompts, ((props) ->
 			@someOption = props.someOption
