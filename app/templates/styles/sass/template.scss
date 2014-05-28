@@ -1,7 +1,7 @@
 /*
- * template-rtl.scss
+ * template.scss
  *
- * Styles for the right-to-left version of <%= name %> Joomla admin template
+ * Styles for <%= name %> Joomla admin template
  *
  * @package     Joomla.Administrator
  * @subpackage  Templates.<%= _.slugify(name).toUpperCase() %>
@@ -11,6 +11,7 @@
 */
 
 // Imports
-@import "template.scss";
+@import "helpers/_icons.scss"
+@import "bower_components/sass-boilerplate/styles/sass/style.scss";
 
-// TODO: Add your RTL custom overridden variable styles here
+// TODO: Add your custom styles here
