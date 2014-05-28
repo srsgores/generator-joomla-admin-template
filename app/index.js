@@ -97,7 +97,7 @@
       this.mkdir("app");
       this.mkdir("app/templates");
       this.template("_package.json", "package.json");
-      return this.copy("_bower.json", "bower.json");
+      return this.template("_bower.json", "bower.json");
     },
     projectfiles: function() {
       this.copy("editorconfig", ".editorconfig");
@@ -110,9 +110,12 @@
     createTemplateInfoFiles: function() {
       return this.template("_templateDetails.xml", "templateDetails.xml");
     },
+    createRootPHPFiles: function() {
+      return this.template("_index.php", "index.php");
+    },
     createEmptyMVCFolders: function() {
       var folders;
-      folders = ["css", "scripts", "styles", "html"];
+      folders = ["css", "scripts", "styles", "html", "bower_components"];
       return folders.forEach((function(_this) {
         return function(folderName) {
           _this.mkdir(folderName);

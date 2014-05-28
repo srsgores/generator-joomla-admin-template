@@ -15,6 +15,16 @@
 path = require("path")
 helpers = require("yeoman-generator").test
 describe "joomla-admin-template generator", ->
+	defaultOptions =
+		description: "A sample description",
+		name: "A template name",
+		authorName: "Test author name",
+		authorEmail: "testemail@gmail.com",
+		authorURL: "testauthor@testauthor.com",
+		license: "MIT",
+		sassBoilerplate: true
+		includejQuery: true
+		includeModernizr: true
 	beforeEach (done) ->
 		helpers.testDirectory path.join(__dirname, "temp"), ((err) ->
 			return done(err) if err
@@ -31,16 +41,18 @@ describe "joomla-admin-template generator", ->
 			"package.json"
 		]
 		helpers.mockPrompt @app,
-			someOption: true
-			description: "A sample description",
-			name: "A template name",
-			authorName: "Test author name",
-			authorEmail: "testemail@gmail.com",
-			authorURL: "testauthor@testauthor.com",
-			license: "MIT",
-			sassBoilerplate: true
-			includejQuery: true
-			includeModernizr: true
+			defaultOptions
+		@app.options["skip-install"] = true
+		@app.run {}, ->
+			helpers.assertFile expected
+			done()
+	it "creates index files", ->
+		expected = [
+			# add files you expect to exist here.
+			"index.php"
+		]
+		helpers.mockPrompt @app,
+			defaultOptions
 		@app.options["skip-install"] = true
 		@app.run {}, ->
 			helpers.assertFile expected

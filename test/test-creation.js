@@ -21,6 +21,18 @@
   helpers = require("yeoman-generator").test;
 
   describe("joomla-admin-template generator", function() {
+    var defaultOptions;
+    defaultOptions = {
+      description: "A sample description",
+      name: "A template name",
+      authorName: "Test author name",
+      authorEmail: "testemail@gmail.com",
+      authorURL: "testauthor@testauthor.com",
+      license: "MIT",
+      sassBoilerplate: true,
+      includejQuery: true,
+      includeModernizr: true
+    };
     beforeEach(function(done) {
       return helpers.testDirectory(path.join(__dirname, "temp"), (function(err) {
         if (err) {
@@ -30,21 +42,20 @@
         return done();
       }).bind(this));
     });
-    return it("creates expected files", function(done) {
+    it("creates expected files", function(done) {
       var expected;
       expected = [".jshintrc", ".editorconfig", "package.json"];
-      helpers.mockPrompt(this.app, {
-        someOption: true,
-        description: "A sample description",
-        name: "A template name",
-        authorName: "Test author name",
-        authorEmail: "testemail@gmail.com",
-        authorURL: "testauthor@testauthor.com",
-        license: "MIT",
-        sassBoilerplate: true,
-        includejQuery: true,
-        includeModernizr: true
+      helpers.mockPrompt(this.app, defaultOptions);
+      this.app.options["skip-install"] = true;
+      return this.app.run({}, function() {
+        helpers.assertFile(expected);
+        return done();
       });
+    });
+    return it("creates index files", function() {
+      var expected;
+      expected = ["index.php"];
+      helpers.mockPrompt(this.app, defaultOptions);
       this.app.options["skip-install"] = true;
       return this.app.run({}, function() {
         helpers.assertFile(expected);

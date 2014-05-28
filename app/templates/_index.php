@@ -1,9 +1,14 @@
 <?php
 /**
+ * index.php
+ *
+ * Entry point, layout view for <%= name %> template.
+ *
  * @package     Joomla.Administrator
- * @subpackage  Templates.isis
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @subpackage  Templates.<%= _.slugify(name) %>
+ *
+ * @copyright   Copyright (C) <%= currentDate %> <%= authorName %>. All rights reserved.
+ * @license     <%= license %>
  * @since       3.0
  */
 
@@ -65,227 +70,175 @@ $statusFixed = $this->params->get("statusFixed", "1");
 $stickyToolbar = $this->params->get("stickyToolbar", "1");
 ?>
 <!DOCTYPE html>
-<html xmlns = "http://www.w3.org/1999/xhtml" xml:lang = "<?php echo $this->language; ?>" lang = "<?php echo $this->language; ?>" dir = "<?php echo $this->direction; ?>">
+<html class="no-js" xml:lang = "<?php echo $this->language; ?>" lang = "<?php echo $this->language; ?>" dir = "<?php echo $this->direction; ?>">
 <head>
 	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+	<meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1">
 	<jdoc:include type="head"/>
-
-	<!-- Template color -->
-	<?php if ($this->params->get("templateColor")) : ?>
-		<style type = "text/css">
-			.navbar-inner, .navbar-inverse .navbar-inner, .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover, .navbar-inverse .nav li.dropdown.open > .dropdown-toggle, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle, #status.status-top {
-				background: <?php echo $this->params->get("templateColor"); ?>;
-			}
-
-			.navbar-inner, .navbar-inverse .nav li.dropdown.open > .dropdown-toggle, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
-				-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
-				-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
-				box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
-			}
-		</style>
-	<?php endif; ?>
-
-	<!-- Template header color -->
-	<?php if ($this->params->get("headerColor")) : ?>
-		<style type = "text/css">
-			.header {
-				background: <?php echo $this->params->get("headerColor"); ?>;
-			}
-		</style>
-	<?php endif; ?>
-
-	<!-- Sidebar background color -->
-	<?php if ($this->params->get("sidebarColor")) : ?>
-		<style type = "text/css">
-			.nav-list > .active > a, .nav-list > .active > a:hover {
-				background: <?php echo $this->params->get("sidebarColor"); ?>;
-			}
-		</style>
-	<?php endif; ?>
 
 	<!--[if lt IE 9]>
 	<script src = "../media/jui/js/html5.js"></script>
 	<![endif]-->
 </head>
 
-<body class = "admin <?php echo $option . " view-" . $view . " layout-" . $layout . " task-" . $task . " itemid-" . $itemid; ?>" <?php if ($stickyToolbar) : ?>data-spy = "scroll" data-target = ".subhead" data-offset = "87"<?php endif; ?>>
-	<!-- Top Navigation -->
-	<nav class = "navbar navbar-inverse navbar-fixed-top">
-		<div class = "navbar-inner">
-			<div class = "container-fluid">
+<body class = "admin <?php echo $option . " view-" . $view . " layout-" . $layout . " task-" . $task . " itemid-" . $itemid; ?>" <?php if ($stickyToolbar) : ?>data-spy = "scroll" data-target = ".subhead" data-offset = "87"<?php endif; ?> role="application">
+	<div class="container">
+		<!-- Top Navigation -->
+		<header role="banner">
+			<nav class = "navbar navbar-inverse navbar-fixed-top" role="navigation">
 				<?php if ($this->params->get("admin_menus") != "0") : ?>
 					<a class = "btn btn-navbar" data-toggle = "collapse" data-target = ".nav-collapse">
-						<span class = "icon-bar"></span>
-						<span class = "icon-bar"></span>
-						<span class = "icon-bar"></span>
+						<i class="icon-menu"></i>
 					</a>
 				<?php endif; ?>
-
-				<a class = "admin-logo" href = "<?php echo $this->baseurl; ?>"><span class = "icon-joomla"></span></a>
-
-				<a class = "brand hidden-desktop hidden-tablet" href = "<?php echo JUri::root(); ?>" title = "<?php echo JText::sprintf("TPL_ISIS_PREVIEW", $sitename); ?>" target = "_blank"><?php echo JHtml::_("string.truncate", $sitename, 14, false, false); ?>
-					<span class = "icon-out-2 small"></span></a>
-
-				<div<?php echo ($this->params->get("admin_menus") != "0") ? " class="nav - collapse"" : ""; ?>>
+				<a class = "admin-logo" href = "<?php echo $this->baseurl; ?>"><i class = "icon-joomla"></i></a>
+				<a class = "brand" href = "<?php echo JUri::root(); ?>" title = "<?php echo JText::sprintf("TPL_ISIS_PREVIEW", $sitename); ?>" target = "_blank"><?php echo JHtml::_("string.truncate", $sitename, 14, false, false); ?>
+					<i class = "icon-out-2"></i></a>
+				<div <?php echo ($this->params->get("admin_menus") != "0") ? " class='nav-collapse'" : ""; ?>>
 					<jdoc:include type="modules" name="menu" style="none"/>
 					<ul class = "nav nav-user<?php echo ($this->direction == "rtl") ? " pull-left" : " pull-right"; ?>">
 						<li class = "dropdown">
-							<a class = "dropdown-toggle" data-toggle = "dropdown" href = "#"><span class = "icon-cog"></span>
-								<b class = "caret"></b></a>
+							<a class = "dropdown-toggle" data-toggle = "dropdown" href = "#">
+								<i class = "icon-cog"></i>
+								<i class="icon-caret-down"></i>
+							</a>
 							<ul class = "dropdown-menu">
 								<li>
-								<span>
-									<span class = "icon-user"></span>
+									<i class = "icon-user"></i>
 									<strong><?php echo $user->name; ?></strong>
-								</span>
 								</li>
 								<li class = "divider"></li>
 								<li class = "">
 									<a href = "index.php?option=com_admin&task=profile.edit&id=<?php echo $user->id; ?>"><?php echo JText::_("TPL_ISIS_EDIT_ACCOUNT"); ?></a>
 								</li>
 								<li class = "divider"></li>
-								<li class = "">
+								<li>
 									<a href = "<?php echo JRoute::_("index.php?option=com_login&task=logout&" . JSession::getFormToken() . "=1"); ?>"><?php echo JText::_("TPL_ISIS_LOGOUT"); ?></a>
 								</li>
 							</ul>
 						</li>
 					</ul>
-					<a class = "brand visible-desktop visible-tablet" href = "<?php echo JUri::root(); ?>" title = "<?php echo JText::sprintf("TPL_ISIS_PREVIEW", $sitename); ?>" target = "_blank"><?php echo JHtml::_("string.truncate", $sitename, 14, false, false); ?>
-						<span class = "icon-out-2 small"></span></a>
+					<a class = "brand" href = "<?php echo JUri::root(); ?>" title = "<?php echo JText::sprintf("TPL_ISIS_PREVIEW", $sitename); ?>" target = "_blank"><?php echo JHtml::_("string.truncate", $sitename, 14, false, false); ?>
+						<i class = "icon-out-2"></i></a>
 				</div>
-				<!--/.nav-collapse -->
-			</div>
-		</div>
-	</nav>
-	<!-- Header -->
-	<?php if ($displayHeader) : ?>
-		<header class = "header">
-			<div class = "container-logo">
-				<img src = "<?php echo $logo; ?>" class = "logo"/>
-			</div>
-			<div class = "container-title">
-				<jdoc:include type="modules" name="title"/>
-			</div>
+			</nav>
 		</header>
-	<?php endif; ?>
-	<?php if ((!$statusFixed) && ($this->countModules("status"))) : ?>
-		<!-- Begin Status Module -->
-		<div id = "status" class = "navbar status-top hidden-phone">
-			<div class = "btn-toolbar">
-				<jdoc:include type="modules" name="status" style="no"/>
-			</div>
-			<div class = "clearfix"></div>
-		</div>
-		<!-- End Status Module -->
-	<?php endif; ?>
-	<?php if (!$cpanel) : ?>
-		<!-- Subheader -->
-		<a class = "btn btn-subhead" data-toggle = "collapse" data-target = ".subhead-collapse"><?php echo JText::_("TPL_ISIS_TOOLBAR"); ?>
-			<i class = "icon-wrench"></i></a>
-		<div class = "subhead-collapse collapse">
-			<div class = "subhead">
-				<div class = "container-fluid">
-					<div id = "container-collapse" class = "container-collapse"></div>
-					<div class = "row-fluid">
+
+		<!-- Header -->
+		<?php if ($displayHeader) : ?>
+			<header class = "header" role="banner">
+				<div class = "container-logo">
+					<img src = "<?php echo $logo; ?>" class = "logo"/>
+				</div>
+				<aside class = "container-title" role="complementary">
+					<jdoc:include type="modules" name="title"/>
+				</aside>
+			</header>
+		<?php endif; ?>
+		<?php if ((!$statusFixed) && ($this->countModules("status"))) : ?>
+			<!-- Begin Status Module -->
+			<aside id = "status" class = "status" role="complementary">
+				<div class = "btn-toolbar">
+					<jdoc:include type="modules" name="status" style="no"/>
+				</div>
+			</aside>
+			<!-- End Status Module -->
+		<?php endif; ?>
+		<?php if (!$cpanel) : ?>
+			<!-- Subheader (expandable) -->
+			<a class = "btn btn-subhead" data-toggle = ".subhead"><?php echo JText::_("TPL_ISIS_TOOLBAR"); ?> <i class = "icon-wrench"></i></a>
+			<aside class = "subhead" role="complementary">
+				<jdoc:include type="modules" name="toolbar" style="no"/>
+			</aside>
+		<?php endif; ?>
+		<div class = "container-main">
+			<article id = "content" role="main">
+				<!-- Begin Content -->
+				<jdoc:include type="modules" name="top" style="xhtml"/>
+				<div class = "content-container">
+					<?php if ($showSubmenu) : ?>
+					<div class = "span2 submenu">
+						<jdoc:include type="modules" name="submenu" style="none"/>
+					</div>
+					<div class = "span10">
+						<?php else : ?>
 						<div class = "span12">
-							<jdoc:include type="modules" name="toolbar" style="no"/>
+							<?php endif; ?>
+							<jdoc:include type="message"/>
+							<?php
+							// Show the page title here if the header is hidden
+							if (!$displayHeader) : ?>
+								<h1 class = "content-title"><?php echo JHtml::_("string.truncate", $app->JComponentTitle, 0, false, false); ?></h1>
+							<?php endif; ?>
+							<jdoc:include type="component"/>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	<?php else : ?>
-		<div style = "margin-bottom: 20px"></div>
-	<?php endif; ?>
-	<!-- container-fluid -->
-	<div class = "container-fluid container-main">
-		<section id = "content">
-			<!-- Begin Content -->
-			<jdoc:include type="modules" name="top" style="xhtml"/>
-			<div class = "row-fluid">
-				<?php if ($showSubmenu) : ?>
-				<div class = "span2">
-					<jdoc:include type="modules" name="submenu" style="none"/>
-				</div>
-				<div class = "span10">
-					<?php else : ?>
-					<div class = "span12">
-						<?php endif; ?>
-						<jdoc:include type="message"/>
-						<?php
-						// Show the page title here if the header is hidden
-						if (!$displayHeader) : ?>
-							<h1 class = "content-title"><?php echo JHtml::_("string.truncate", $app->JComponentTitle, 0, false, false); ?></h1>
-						<?php endif; ?>
-						<jdoc:include type="component"/>
+					<?php if ($this->countModules("bottom")) : ?>
+						<jdoc:include type="modules" name="bottom" style="xhtml"/>
+					<?php endif; ?>
 					</div>
-				</div>
-				<?php if ($this->countModules("bottom")) : ?>
-					<jdoc:include type="modules" name="bottom" style="xhtml"/>
+					<!-- End Content -->
+			</article>
+			</div>
+			<footer class = "footer" role="contentinfo">
+				<?php if (!$this->countModules("status") || (!$statusFixed && $this->countModules("status"))) : ?>
+					<small>
+						<jdoc:include type="modules" name="footer" style="no"/>
+						&copy; <?php echo $sitename; ?> <?php echo date("Y"); ?></small>
 				<?php endif; ?>
-				<!-- End Content -->
-		</section>
+		<?php if (($statusFixed) && ($this->countModules("status"))) : ?>
+			<!-- Begin Status Module -->
+			<aside id = "status" class = "status-summary">
+				<div class = "btn-toolbar" role="status">
+					<div class = "joomla-version-info">
+						<small>
+							<jdoc:include type="modules" name="footer" style="no"/>
+							&copy; <?php echo date("Y"); ?> <?php echo $sitename; ?>
+						</small>
+					</div>
+					<jdoc:include type="modules" name="status" style="no"/>
+				</div>
+			</aside>
+			<!-- End Status Module -->
+		<?php endif; ?>
+		</footer>
+		<jdoc:include type="modules" name="debug" style="none"/>
+		<?php if ($stickyToolbar) : ?>
+			<script>
+				(function ($) {
+					// fix sub nav on scroll
+					var $win = $(window)
+						, $nav = $(".subhead")
+						, navTop = $(".subhead").length && $(".subhead").offset().top - <?php if ($displayHeader || !$statusFixed) : ?>40<?php else:?>20<?php endif;?>
+						, isFixed = 0
 
-		<?php if (!$this->countModules("status") || (!$statusFixed && $this->countModules("status"))) : ?>
-			<footer class = "footer">
-				<p align = "center">
-					<jdoc:include type="modules" name="footer" style="no"/>
-					&copy; <?php echo $sitename; ?> <?php echo date("Y"); ?></p>
-			</footer>
+					processScroll();
+
+					// hack sad times - holdover until rewrite for 2.1
+					$nav.on("click", function () {
+						if (!isFixed) {
+							setTimeout(function () {
+								$win.scrollTop($win.scrollTop() - 47)
+							}, 10)
+						}
+					});
+
+					$win.on("scroll", processScroll)
+
+					function processScroll() {
+						var i, scrollTop = $win.scrollTop()
+						if (scrollTop >= navTop && !isFixed) {
+							isFixed = 1;
+							$nav.addClass("subhead-fixed")
+						}
+						else if (scrollTop <= navTop && isFixed) {
+							isFixed = 0;
+							$nav.removeClass("subhead-fixed")
+						}
+					}
+				})(jQuery);
+			</script>
 		<?php endif; ?>
 	</div>
-	<?php if (($statusFixed) && ($this->countModules("status"))) : ?>
-		<!-- Begin Status Module -->
-		<div id = "status" class = "navbar navbar-fixed-bottom hidden-phone">
-			<div class = "btn-toolbar">
-				<div class = "btn-group pull-right">
-					<p>
-						<jdoc:include type="modules" name="footer" style="no"/>
-						&copy; <?php echo date("Y"); ?> <?php echo $sitename; ?>
-					</p>
-
-				</div>
-				<jdoc:include type="modules" name="status" style="no"/>
-			</div>
-		</div>
-		<!-- End Status Module -->
-	<?php endif; ?>
-	<jdoc:include type="modules" name="debug" style="none"/>
-	<?php if ($stickyToolbar) : ?>
-		<script>
-			(function ($) {
-				// fix sub nav on scroll
-				var $win = $(window)
-					, $nav = $(".subhead")
-					, navTop = $(".subhead").length && $(".subhead").offset().top - <?php if ($displayHeader || !$statusFixed) : ?>40<?php else:?>20<?php endif;?>
-					, isFixed = 0
-
-				processScroll()
-
-				// hack sad times - holdover until rewrite for 2.1
-				$nav.on("click", function () {
-					if (!isFixed) {
-						setTimeout(function () {
-							$win.scrollTop($win.scrollTop() - 47)
-						}, 10)
-					}
-				})
-
-				$win.on("scroll", processScroll)
-
-				function processScroll() {
-					var i, scrollTop = $win.scrollTop()
-					if (scrollTop >= navTop && !isFixed) {
-						isFixed = 1
-						$nav.addClass("subhead-fixed")
-					}
-					else if (scrollTop <= navTop && isFixed) {
-						isFixed = 0
-						$nav.removeClass("subhead-fixed")
-					}
-				}
-			})(jQuery);
-		</script>
-	<?php endif; ?>
 </body>
 </html>

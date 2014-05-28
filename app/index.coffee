@@ -95,7 +95,7 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 		@mkdir "app"
 		@mkdir "app/templates"
 		@template "_package.json", "package.json"
-		@copy "_bower.json", "bower.json"
+		@template "_bower.json", "bower.json"
 
 	projectfiles: ->
 		@copy "editorconfig", ".editorconfig"
@@ -106,12 +106,15 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 
 	createTemplateInfoFiles: ->
 		@template "_templateDetails.xml", "templateDetails.xml"
+	createRootPHPFiles: ->
+		@template "_index.php", "index.php"
 	createEmptyMVCFolders: ->
 		folders = [
 			"css"
 			"scripts"
 			"styles"
 			"html"
+			"bower_components"
 		]
 		folders.forEach (folderName) =>
 			@mkdir folderName
