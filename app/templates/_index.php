@@ -24,12 +24,13 @@ $user = JFactory::getUser();
 
 // Add JavaScript Frameworks
 JHtml::_("bootstrap.framework");
-$doc->addScriptVersion("templates/" . $this->template . "/js/template.js");
+$doc->addScriptVersion("templates/" . $this->template . "/scripts/template.js");
+<% if (includeModernizr) { %>$doc->addScriptVersion("templates/" . $this->template . "/bower_components/modernizr/modernizr.js");<% } %>
 
 // Add Stylesheets
-$doc->addStyleSheetVersion("templates/" . $this->template . "/css/template" . ($this->direction == "rtl" ? "-rtl" : "") . ".css");
+$doc->addStyleSheetVersion("templates/" . $this->template . "/styles/css/template" . ($this->direction == "rtl" ? "-rtl" : "") . ".css");
 
-// Load specific language related CSS
+// Load specific language-related CSS
 $file = "language/" . $lang->getTag() . "/" . $lang->getTag() . ".css";
 
 if (is_file($file)) {
@@ -76,9 +77,9 @@ $stickyToolbar = $this->params->get("stickyToolbar", "1");
 	<meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1">
 	<jdoc:include type="head"/>
 
-	<!--[if lt IE 9]>
+	<% if (!includeModernizr) { %><!--[if lt IE 9]>
 	<script src = "../media/jui/js/html5.js"></script>
-	<![endif]-->
+	<![endif]--><% } %>
 </head>
 
 <body class = "admin <?php echo $option . " view-" . $view . " layout-" . $layout . " task-" . $task . " itemid-" . $itemid; ?>" <?php if ($stickyToolbar) : ?>data-spy = "scroll" data-target = ".subhead" data-offset = "87"<?php endif; ?> role="application">
@@ -92,7 +93,7 @@ $stickyToolbar = $this->params->get("stickyToolbar", "1");
 					</a>
 				<?php endif; ?>
 				<a class = "admin-logo" href = "<?php echo $this->baseurl; ?>"><i class = "icon-joomla"></i></a>
-				<a class = "brand" href = "<?php echo JUri::root(); ?>" title = "<?php echo JText::sprintf("TPL_ISIS_PREVIEW", $sitename); ?>" target = "_blank"><?php echo JHtml::_("string.truncate", $sitename, 14, false, false); ?>
+				<a class = "brand" href = "<?php echo JUri::root(); ?>" title = "<?php echo JText::sprintf("TPL_<%= _.slugify(name).toUpperCase() %>_PREVIEW", $sitename); ?>" target = "_blank"><?php echo JHtml::_("string.truncate", $sitename, 14, false, false); ?>
 					<i class = "icon-out-2"></i></a>
 				<div <?php echo ($this->params->get("admin_menus") != "0") ? " class='nav-collapse'" : ""; ?>>
 					<jdoc:include type="modules" name="menu" style="none"/>
@@ -108,17 +109,17 @@ $stickyToolbar = $this->params->get("stickyToolbar", "1");
 									<strong><?php echo $user->name; ?></strong>
 								</li>
 								<li class = "divider"></li>
-								<li class = "">
-									<a href = "index.php?option=com_admin&task=profile.edit&id=<?php echo $user->id; ?>"><?php echo JText::_("TPL_ISIS_EDIT_ACCOUNT"); ?></a>
+								<li>
+									<a href = "index.php?option=com_admin&task=profile.edit&id=<?php echo $user->id; ?>"><?php echo JText::_("TPL_<%= _.slugify(name).toUpperCase() %>_EDIT_ACCOUNT"); ?></a>
 								</li>
 								<li class = "divider"></li>
 								<li>
-									<a href = "<?php echo JRoute::_("index.php?option=com_login&task=logout&" . JSession::getFormToken() . "=1"); ?>"><?php echo JText::_("TPL_ISIS_LOGOUT"); ?></a>
+									<a href = "<?php echo JRoute::_("index.php?option=com_login&task=logout&" . JSession::getFormToken() . "=1"); ?>"><?php echo JText::_("TPL_<%= _.slugify(name).toUpperCase() %>_LOGOUT"); ?></a>
 								</li>
 							</ul>
 						</li>
 					</ul>
-					<a class = "brand" href = "<?php echo JUri::root(); ?>" title = "<?php echo JText::sprintf("TPL_ISIS_PREVIEW", $sitename); ?>" target = "_blank"><?php echo JHtml::_("string.truncate", $sitename, 14, false, false); ?>
+					<a class = "brand" href = "<?php echo JUri::root(); ?>" title = "<?php echo JText::sprintf("TPL_<%= _.slugify(name).toUpperCase() %>_PREVIEW", $sitename); ?>" target = "_blank"><?php echo JHtml::_("string.truncate", $sitename, 14, false, false); ?>
 						<i class = "icon-out-2"></i></a>
 				</div>
 			</nav>
@@ -146,7 +147,7 @@ $stickyToolbar = $this->params->get("stickyToolbar", "1");
 		<?php endif; ?>
 		<?php if (!$cpanel) : ?>
 			<!-- Subheader (expandable) -->
-			<a class = "btn btn-subhead" data-toggle = ".subhead"><?php echo JText::_("TPL_ISIS_TOOLBAR"); ?> <i class = "icon-wrench"></i></a>
+			<a class = "btn btn-subhead" data-toggle = ".subhead"><?php echo JText::_("TPL_<%= _.slugify(name).toUpperCase() %>_TOOLBAR"); ?> <i class = "icon-wrench"></i></a>
 			<aside class = "subhead" role="complementary">
 				<jdoc:include type="modules" name="toolbar" style="no"/>
 			</aside>
@@ -157,12 +158,12 @@ $stickyToolbar = $this->params->get("stickyToolbar", "1");
 				<jdoc:include type="modules" name="top" style="xhtml"/>
 				<div class = "content-container">
 					<?php if ($showSubmenu) : ?>
-					<div class = "span2 submenu">
+					<aside class = "span2 submenu" role="complementary">
 						<jdoc:include type="modules" name="submenu" style="none"/>
-					</div>
+					</aside>
 					<div class = "span10">
 						<?php else : ?>
-						<div class = "span12">
+						<aside class = "span12" role="complementary">
 							<?php endif; ?>
 							<jdoc:include type="message"/>
 							<?php
@@ -171,7 +172,7 @@ $stickyToolbar = $this->params->get("stickyToolbar", "1");
 								<h1 class = "content-title"><?php echo JHtml::_("string.truncate", $app->JComponentTitle, 0, false, false); ?></h1>
 							<?php endif; ?>
 							<jdoc:include type="component"/>
-						</div>
+						</aside>
 					</div>
 					<?php if ($this->countModules("bottom")) : ?>
 						<jdoc:include type="modules" name="bottom" style="xhtml"/>
@@ -203,42 +204,6 @@ $stickyToolbar = $this->params->get("stickyToolbar", "1");
 		<?php endif; ?>
 		</footer>
 		<jdoc:include type="modules" name="debug" style="none"/>
-		<?php if ($stickyToolbar) : ?>
-			<script>
-				(function ($) {
-					// fix sub nav on scroll
-					var $win = $(window)
-						, $nav = $(".subhead")
-						, navTop = $(".subhead").length && $(".subhead").offset().top - <?php if ($displayHeader || !$statusFixed) : ?>40<?php else:?>20<?php endif;?>
-						, isFixed = 0
-
-					processScroll();
-
-					// hack sad times - holdover until rewrite for 2.1
-					$nav.on("click", function () {
-						if (!isFixed) {
-							setTimeout(function () {
-								$win.scrollTop($win.scrollTop() - 47)
-							}, 10)
-						}
-					});
-
-					$win.on("scroll", processScroll)
-
-					function processScroll() {
-						var i, scrollTop = $win.scrollTop()
-						if (scrollTop >= navTop && !isFixed) {
-							isFixed = 1;
-							$nav.addClass("subhead-fixed")
-						}
-						else if (scrollTop <= navTop && isFixed) {
-							isFixed = 0;
-							$nav.removeClass("subhead-fixed")
-						}
-					}
-				})(jQuery);
-			</script>
-		<?php endif; ?>
 	</div>
 </body>
 </html>

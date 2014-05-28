@@ -49,28 +49,28 @@
 
 				<field name = "templateColor" class = "" type = "color" default = "#13294A"
 					   validate = "color"
-					   label = "TPL_ISIS_COLOR_LABEL"
-					   description = "TPL_ISIS_COLOR_DESC"/>
+					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_LABEL"
+					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_DESC"/>
 
 				<field name = "headerColor" class = "" type = "color" default = "#184A7D"
 					   validate = "color"
-					   label = "TPL_ISIS_COLOR_HEADER_LABEL"
-					   description = "TPL_ISIS_COLOR_HEADER_DESC"/>
+					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_HEADER_LABEL"
+					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_HEADER_DESC"/>
 
 				<field name = "sidebarColor" class = "" type = "color" default = "#0088CC"
 					   validate = "color"
-					   label = "TPL_ISIS_COLOR_SIDEBAR_LABEL"
-					   description = "TPL_ISIS_COLOR_SIDEBAR_DESC"/>
+					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_SIDEBAR_LABEL"
+					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_SIDEBAR_DESC"/>
 
 				<field name = "logoFile" class = "" type = "media" default = ""
-					   label = "TPL_ISIS_LOGO_LABEL"
-					   description = "TPL_ISIS_LOGO_DESC"/>
+					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_LOGO_LABEL"
+					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_LOGO_DESC"/>
 
 				<field name = "admin_menus" type = "radio"
 					   class = "btn-group btn-group-yesno"
 					   default = "1"
-					   label = "TPL_ISIS_FIELD_ADMIN_MENUS_LABEL"
-					   description = "TPL_ISIS_FIELD_ADMIN_MENUS_DESC"
+					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_FIELD_ADMIN_MENUS_LABEL"
+					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_FIELD_ADMIN_MENUS_DESC"
 					   filter = "integer">
 					<option
 							value = "1">JYES
@@ -83,8 +83,8 @@
 				<field name = "displayHeader" type = "radio"
 					   class = "btn-group btn-group-yesno"
 					   default = "1"
-					   label = "TPL_ISIS_HEADER_LABEL"
-					   description = "TPL_ISIS_HEADER_DESC"
+					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_HEADER_LABEL"
+					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_HEADER_DESC"
 					   filter = "integer">
 					<option
 							value = "1">JYES
@@ -96,22 +96,22 @@
 
 				<field name = "statusFixed" type = "list"
 					   default = "1"
-					   label = "TPL_ISIS_STATUS_LABEL"
-					   description = "TPL_ISIS_STATUS_DESC"
+					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_LABEL"
+					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_DESC"
 					   filter = "integer">
 					<option
-							value = "1">TPL_ISIS_STATUS_BOTTOM
+							value = "1">TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_BOTTOM
 					</option>
 					<option
-							value = "0">TPL_ISIS_STATUS_TOP
+							value = "0">TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_TOP
 					</option>
 				</field>
 
 				<field name = "stickyToolbar" type = "radio"
 					   class = "btn-group btn-group-yesno"
 					   default = "1"
-					   label = "TPL_ISIS_STICKY_LABEL"
-					   description = "TPL_ISIS_STICKY_DESC"
+					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_STICKY_LABEL"
+					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_STICKY_DESC"
 					   filter = "integer">
 					<option
 							value = "1">JYES

@@ -110,7 +110,6 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 		@template "_index.php", "index.php"
 	createEmptyMVCFolders: ->
 		folders = [
-			"css"
 			"scripts"
 			"styles"
 			"html"

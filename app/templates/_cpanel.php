@@ -1,12 +1,16 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  Templates.isis
+ * cpanel.php
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * Display central panel for template
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  Templates.<%= _.slugify(name).toUpperCase() %>
+ *
+ * @copyright   Copyright (C) <%= currentDate %> <%= authorName %>. All rights reserved.
+ * @license     <%= license %>
  */
 
-defined('_JEXEC') or die;
+defined("_JEXEC") or die;
 
-require_once __DIR__ . '/index.php';
+require_once __DIR__ . "/index.php";

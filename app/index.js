@@ -115,7 +115,7 @@
     },
     createEmptyMVCFolders: function() {
       var folders;
-      folders = ["css", "scripts", "styles", "html", "bower_components"];
+      folders = ["scripts", "styles", "html", "bower_components"];
       return folders.forEach((function(_this) {
         return function(folderName) {
           _this.mkdir(folderName);
