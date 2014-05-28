@@ -87,7 +87,7 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 			@sassBoilerplate = props.sassBoilerplate
 			@includejQuery = props.includejQuery
 			@includeModernizr = props.includeModernizr
-			@currentDate = "September 11, 2003"
+			@currentDate = (new Date()).toString()
 			done()
 		).bind(this)
 
@@ -101,14 +101,33 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 		@copy "editorconfig", ".editorconfig"
 		@copy "jshintrc", ".jshintrc"
 	createLanguageFiles: ->
-		@template "language/en-GB/_en-GB.tpl_template-name.ini", "languages/en-GB/en-GB.tpl_" + @_.slugify(@name) + ".ini"
-		@template "language/en-GB/_en-GB.tpl_template-name.sys.ini", "languages/en-GB/en-GB.tpl_" + @_.slugify(@name) + ".sys.ini"
+		@template "language/en-GB/_en-GB.tpl_template-name.ini", "language/en-GB/en-GB.tpl_" + @_.slugify(@name) + ".ini"
+		@template "language/en-GB/_en-GB.tpl_template-name.sys.ini", "language/en-GB/en-GB.tpl_" + @_.slugify(@name) + ".sys.ini"
 
 	createTemplateInfoFiles: ->
 		@template "_templateDetails.xml", "templateDetails.xml"
 	createRootPHPFiles: ->
 		@template "_index.php", "index.php"
-	createEmptyMVCFolders: ->
+		@template "_component.php", "component.php"
+		@template "_error.php", "error.php"
+		@template "_layout-helpers.php", "layout-helpers.php"
+		@template "_cpanel.php", "cpanel.php"
+		@template "_login.php", "login.php"
+	createBrowserFiles: ->
+		files = [
+			"tile.png"
+			"tile-wide.png"
+			"crossdomain.xml"
+			"browserconfig.xml"
+			"favicon.ico"
+			"apple-touch-icon-precomposed.png"
+			"template_preview.png"
+			"template_thumbnail.png"
+		]
+		for file in files
+			@copy file, file
+
+	createEmptyFolders: ->
 		folders = [
 			"scripts"
 			"styles"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN""http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
 <extension version = "3.1" type = "template" client = "administrator">
 	<name><%= _.slugify(name)%></name>
 	<creationDate><%= currentDate %></creationDate>
@@ -20,6 +20,12 @@
 		<filename>templateDetails.xml</filename>
 		<filename>template_preview.png</filename>
 		<filename>template_thumbnail.png</filename>
+		<!-- HTML Boilerplate Files -->
+		<filename>apple-touch-icon-precomposed.png</filename>
+		<filename>browserconfig.xml</filename>
+		<filename>crossdomain.xml</filename>
+		<filename>tile.png</filename>
+		<filename>tile-wide.png</filename>
 		<folder>html</folder>
 		<folder>scripts</folder>
 		<folder>language</folder>
@@ -40,38 +46,37 @@
 		<position>debug</position>
 	</positions>
 	<languages folder = "language">
-		<language tag = "en-GB">en-GB/en-GB.tpl_<%= _.slugify(name)%>.ini</language>
-		<language tag = "en-GB">en-GB/en-GB.tpl_<%= _.slugify(name)%>.sys.ini</language>
+		<language tag = "en-GB">en-GB/en-GB.tpl_<%= _.slugify(name)%>.ini
+		</language>
+		<language tag = "en-GB">en-GB/en-GB.tpl_<%= _.slugify(name)%>.sys.ini
+		</language>
 	</languages>
 	<config>
 		<fields name = "params">
 			<fieldset name = "advanced">
-
 				<field name = "templateColor" class = "" type = "color" default = "#13294A"
-					   validate = "color"
-					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_LABEL"
-					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_DESC"/>
+					validate = "color"
+					label = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_LABEL"
+					description = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_DESC"/>
 
 				<field name = "headerColor" class = "" type = "color" default = "#184A7D"
-					   validate = "color"
-					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_HEADER_LABEL"
-					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_HEADER_DESC"/>
+					validate = "color"
+					label = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_HEADER_LABEL"
+					description = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_HEADER_DESC"/>
 
 				<field name = "sidebarColor" class = "" type = "color" default = "#0088CC"
-					   validate = "color"
-					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_SIDEBAR_LABEL"
-					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_SIDEBAR_DESC"/>
+					validate = "color"
+					label = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_SIDEBAR_LABEL"
+					description = "TPL_<%= _.slugify(name).toUpperCase() %>_COLOR_SIDEBAR_DESC"/>
 
 				<field name = "logoFile" class = "" type = "media" default = ""
-					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_LOGO_LABEL"
-					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_LOGO_DESC"/>
+					label = "TPL_<%= _.slugify(name).toUpperCase() %>_LOGO_LABEL"
+					description = "TPL_<%= _.slugify(name).toUpperCase() %>_LOGO_DESC"/>
 
-				<field name = "admin_menus" type = "radio"
-					   class = "btn-group btn-group-yesno"
-					   default = "1"
-					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_FIELD_ADMIN_MENUS_LABEL"
-					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_FIELD_ADMIN_MENUS_DESC"
-					   filter = "integer">
+				<field name = "admin_menus" type = "radio" class = "btn-group btn-group-yesno" default = "1"
+					label = "TPL_<%= _.slugify(name).toUpperCase() %>_FIELD_ADMIN_MENUS_LABEL"
+					description = "TPL_<%= _.slugify(name).toUpperCase() %>_FIELD_ADMIN_MENUS_DESC"
+					filter = "integer">
 					<option
 							value = "1">JYES
 					</option>
@@ -80,45 +85,30 @@
 					</option>
 				</field>
 
-				<field name = "displayHeader" type = "radio"
-					   class = "btn-group btn-group-yesno"
-					   default = "1"
-					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_HEADER_LABEL"
-					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_HEADER_DESC"
-					   filter = "integer">
-					<option
-							value = "1">JYES
-					</option>
-					<option
-							value = "0">JNO
-					</option>
+				<field name = "displayHeader" type = "radio" class = "btn-group btn-group-yesno" default = "1"
+					label = "TPL_<%= _.slugify(name).toUpperCase() %>_HEADER_LABEL"
+					description = "TPL_<%= _.slugify(name).toUpperCase() %>_HEADER_DESC" filter = "integer">
+					<option value = "1">JYES</option>
+					<option value = "0">JNO</option>
 				</field>
 
 				<field name = "statusFixed" type = "list"
-					   default = "1"
-					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_LABEL"
-					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_DESC"
-					   filter = "integer">
-					<option
-							value = "1">TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_BOTTOM
-					</option>
-					<option
-							value = "0">TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_TOP
-					</option>
+					default = "1"
+					label = "TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_LABEL"
+					description = "TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_DESC"
+					filter = "integer">
+					<option value = "1">TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_BOTTOM</option>
+					<option value = "0">TPL_<%= _.slugify(name).toUpperCase() %>_STATUS_TOP</option>
 				</field>
 
 				<field name = "stickyToolbar" type = "radio"
-					   class = "btn-group btn-group-yesno"
-					   default = "1"
-					   label = "TPL_<%= _.slugify(name).toUpperCase() %>_STICKY_LABEL"
-					   description = "TPL_<%= _.slugify(name).toUpperCase() %>_STICKY_DESC"
-					   filter = "integer">
-					<option
-							value = "1">JYES
-					</option>
-					<option
-							value = "0">JNO
-					</option>
+					class = "btn-group btn-group-yesno"
+					default = "1"
+					label = "TPL_<%= _.slugify(name).toUpperCase() %>_STICKY_LABEL"
+					description = "TPL_<%= _.slugify(name).toUpperCase() %>_STICKY_DESC"
+					filter = "integer">
+					<option value = "1">JYES</option>
+					<option value = "0">JNO</option>
 				</field>
 
 			</fieldset>

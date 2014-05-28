@@ -89,7 +89,7 @@
         this.sassBoilerplate = props.sassBoilerplate;
         this.includejQuery = props.includejQuery;
         this.includeModernizr = props.includeModernizr;
-        this.currentDate = "September 11, 2003";
+        this.currentDate = (new Date()).toString();
         return done();
       }).bind(this));
     },
@@ -104,16 +104,31 @@
       return this.copy("jshintrc", ".jshintrc");
     },
     createLanguageFiles: function() {
-      this.template("language/en-GB/_en-GB.tpl_template-name.ini", "languages/en-GB/en-GB.tpl_" + this._.slugify(this.name) + ".ini");
-      return this.template("language/en-GB/_en-GB.tpl_template-name.sys.ini", "languages/en-GB/en-GB.tpl_" + this._.slugify(this.name) + ".sys.ini");
+      this.template("language/en-GB/_en-GB.tpl_template-name.ini", "language/en-GB/en-GB.tpl_" + this._.slugify(this.name) + ".ini");
+      return this.template("language/en-GB/_en-GB.tpl_template-name.sys.ini", "language/en-GB/en-GB.tpl_" + this._.slugify(this.name) + ".sys.ini");
     },
     createTemplateInfoFiles: function() {
       return this.template("_templateDetails.xml", "templateDetails.xml");
     },
     createRootPHPFiles: function() {
-      return this.template("_index.php", "index.php");
+      this.template("_index.php", "index.php");
+      this.template("_component.php", "component.php");
+      this.template("_error.php", "error.php");
+      this.template("_layout-helpers.php", "layout-helpers.php");
+      this.template("_cpanel.php", "cpanel.php");
+      return this.template("_login.php", "login.php");
     },
-    createEmptyMVCFolders: function() {
+    createBrowserFiles: function() {
+      var file, files, _i, _len, _results;
+      files = ["tile.png", "tile-wide.png", "crossdomain.xml", "browserconfig.xml", "favicon.ico", "apple-touch-icon-precomposed.png", "template_preview.png", "template_thumbnail.png"];
+      _results = [];
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        _results.push(this.copy(file, file));
+      }
+      return _results;
+    },
+    createEmptyFolders: function() {
       var folders;
       folders = ["scripts", "styles", "html", "bower_components"];
       return folders.forEach((function(_this) {

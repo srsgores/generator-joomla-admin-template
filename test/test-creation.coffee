@@ -50,6 +50,12 @@ describe "joomla-admin-template generator", ->
 		expected = [
 			# add files you expect to exist here.
 			"index.php"
+			"favicon.ico"
+			"browserconfig.xml"
+			"crossdomain.xml"
+			"apple-touch-icon-precomposed.png"
+			"tile.png"
+			"tile-wide.png"
 		]
 		helpers.mockPrompt @app,
 			defaultOptions

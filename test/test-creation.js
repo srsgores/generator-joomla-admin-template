@@ -54,7 +54,7 @@
     });
     return it("creates index files", function() {
       var expected;
-      expected = ["index.php"];
+      expected = ["index.php", "favicon.ico", "browserconfig.xml", "crossdomain.xml", "apple-touch-icon-precomposed.png", "tile.png", "tile-wide.png"];
       helpers.mockPrompt(this.app, defaultOptions);
       this.app.options["skip-install"] = true;
       return this.app.run({}, function() {

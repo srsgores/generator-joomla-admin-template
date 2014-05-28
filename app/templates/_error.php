@@ -102,9 +102,7 @@ $stickyToolbar = $params->get("stickyToolbar", "1");
 			<div class = "container-fluid">
 				<?php if ($params->get("admin_menus") != "0") : ?>
 					<a class = "btn btn-navbar" data-toggle = "collapse" data-target = ".nav-collapse">
-						<span class = "icon-bar"></span>
-						<span class = "icon-bar"></span>
-						<span class = "icon-bar"></span>
+						<i class="icon-menu"></i>
 					</a>
 				<?php endif; ?>
 				<a class = "admin-logo" href = "<?php echo $this->baseurl; ?>"><span class = "icon-joomla"></span></a>
@@ -187,7 +185,6 @@ $stickyToolbar = $params->get("stickyToolbar", "1");
 				}
 				?>
 			</div>
-			<div class = "clearfix"></div>
 		</div>
 		<!-- End Status Module -->
 	<?php endif; ?>
@@ -211,41 +208,6 @@ $stickyToolbar = $params->get("stickyToolbar", "1");
 			</div>
 			<!-- End Content -->
 		</section>
-		<hr/>
 	</div>
-	<script>
-		(function ($) {
-			// fix sub nav on scroll
-			var $win = $(window)
-				, $nav = $(".subhead")
-				, navTop = $(".subhead").length && $(".subhead").offset().top - 40
-				, isFixed = 0
-
-			processScroll()
-
-			// hack sad times - holdover until rewrite for 2.1
-			$nav.on("click", function () {
-				if (!isFixed) {
-					setTimeout(function () {
-						$win.scrollTop($win.scrollTop() - 47)
-					}, 10)
-				}
-			})
-
-			$win.on("scroll", processScroll)
-
-			function processScroll() {
-				var i, scrollTop = $win.scrollTop()
-				if (scrollTop >= navTop && !isFixed) {
-					isFixed = 1
-					$nav.addClass("subhead-fixed")
-				}
-				else if (scrollTop <= navTop && isFixed) {
-					isFixed = 0
-					$nav.removeClass("subhead-fixed")
-				}
-			}
-		})(jQuery);
-	</script>
 </body>
 </html>
