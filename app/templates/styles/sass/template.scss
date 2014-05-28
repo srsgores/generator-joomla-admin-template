@@ -1,0 +1,16 @@
+/*
+ * template-rtl.scss
+ *
+ * Styles for the right-to-left version of <%= name %> Joomla admin template
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  Templates.<%= _.slugify(name).toUpperCase() %>
+ *
+ * @copyright   Copyright (C) <%= currentDate %> <%= authorName %>. All rights reserved.
+ * @license     <%= license %>
+*/
+
+// Imports
+@import "template.scss";
+
+// TODO: Add your RTL custom overridden variable styles here

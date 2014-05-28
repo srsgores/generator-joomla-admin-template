@@ -1,0 +1,16 @@
+/*
+ * style.scss
+ *
+ * Styles for <%= name %> Joomla admin template
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  Templates.<%= _.slugify(name).toUpperCase() %>
+ *
+ * @copyright   Copyright (C) <%= currentDate %> <%= authorName %>. All rights reserved.
+ * @license     <%= license %>
+*/
+
+// Imports
+@import "bower_components/sass-boilerplate/styles/sass/style.scss";
+
+// TODO: Add your custom styles here

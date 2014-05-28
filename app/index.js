@@ -67,7 +67,7 @@
         }, {
           type: "confirm",
           name: "includejQuery",
-          message: "Use jQuery?"
+          message: "Use the latest version of jQuery (not joomla's 1.1.11 with migrate)?"
         }, {
           type: "confirm",
           name: "includeModernizr",
@@ -127,6 +127,19 @@
         _results.push(this.copy(file, file));
       }
       return _results;
+    },
+    createStyles: function() {
+      switch (this.sassBoilerplate) {
+        case true:
+          this.template("styles/sass/template.scss", "styles/sass/template.scss");
+          this.template("styles/sass/template-rtl.scss", "styles/sass/template-rtl.scss");
+          return this.template("styles/sass/helpers/_icons.scss", "styles/sass/helpers/_icons.scss");
+        default:
+          this.template("styles/less/template.less", "styles/less/template.less");
+          this.template("styles/less/template-rtl.less", "styles/less/template-rtl.less");
+          this.template("styles/less/helpers/icomoon.less", "styles/less/helpers/icomoon.less");
+          return this.template("styles/less/helpers/variables.less", "styles/less/helpers/variables.less");
+      }
     },
     createEmptyFolders: function() {
       var folders;
