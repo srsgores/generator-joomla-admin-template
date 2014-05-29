@@ -2,10 +2,68 @@
 
 > [Yeoman](http://yeoman.io) generator
 
+*generator-joomla-admin-template* is a [yeoman](http://yeoman) generator, which allows you to automatically generate [joomla](https://github.com/joomla/joomla-cms) administrator templates for your back-end.
 
-## Getting Started
+# Features
 
-### What is Yeoman?
+* **Accessified**.  I added WAI-ARIA roles to the markup
+* **SASS-ready** (or LESS).  Choose what preprocessor you want to use
+* PHPDoc comments.  Like this:
+
+```
+/**
+ * index.php
+ *
+ * Entry point, layout view for owner template.
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  Templates.owner
+ *
+ * @copyright   Copyright (C) Wed May 28 2014 16:50:40 GMT-0600 (Mountain Daylight Time) Sean Goresht. All rights reserved.
+ * @license     MIT
+ * @since       3.0
+ */
+```
+
+* **Based off the HTML5 boilerplate**.  You can actually expect root-level files like ``browserconfig.xml`` or ``apple-touch-icon-precomposed.png``
+* Ready to go with my [sass boilerplate](https://github.com/srsgores/sass-boilerplate).
+* **Bootstrap-free**!  But you can still use bootstrap if you really want to.
+
+## Quick Start
+
+1. Install [nodejs](http://nodejs.org)
+2. (Windows) Restart
+3. Install [yeoman](http://yeoman.io):
+```bash
+$ npm install -g yo
+```
+4. Install *generator-joomla-admin-template* **globally** from npm:
+```bash
+$ npm install -g generator-joomla-admin-template
+```
+5. Run the generator:
+```bash
+$ yo joomla-admin-template
+```
+
+## FAQ
+
+### So Bootstrap sucks.  What's a good alternative?
+
+1. Use my [sass boilerplate](https://github.com/srsgores/sass-boilerplate) and customize it to your needs.  You will probably need to use bootstrap, though, as it's used throughout Joomla.  I suggest, however, fixing their mistakes and using proper selectors and variables.
+2. Use [Zurb Foundation](http://foundation.zurb.com/)
+3. Use anything else
+
+
+### Are there plans for subgenerators for template fields?
+
+Yes, I think this would be a good idea.  I would happily take any suggestions on implementing this.
+
+### What dependencies are required for SASS?
+
+I included the defaults for my [sass boilerplate](https://github.com/srsgores/sass-boilerplate) in the ``config.rb`` file, but you can change them.  In reality, there are actually **no gem dependencies**
+
+### Wait, What is Yeoman?
 
 Trick question. It's not a thing. It's this guy:
 
@@ -15,32 +73,8 @@ Basically, he wears a top hat, lives in your computer, and waits for you to tell
 
 Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
 
-```bash
-$ npm install -g yo
-```
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-joomla-admin-template from npm, run:
-
-```bash
-$ npm install -g generator-joomla-admin-template
-```
-
-Finally, initiate the generator:
-
-```bash
-$ yo joomla-admin-template
-```
-
-### Getting To Know Yeoman
-
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
-
+## Contributing
+All contributions are welcome.  Please create an issue with the contents of your contribution.
 
 ## License
 
