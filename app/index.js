@@ -128,6 +128,10 @@
       }
       return _results;
     },
+    createScripts: function() {
+      this.template("scripts/_template.coffee", "scripts/template.coffee");
+      return this.template("scripts/_template.js", "scripts/template.js");
+    },
     createEmptyFolders: function() {
       var folders;
       folders = ["scripts", "styles", "styles/css", "language", "language/en-GB", "html", "bower_components"];

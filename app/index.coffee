@@ -127,6 +127,10 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 		for file in files
 			@copy file, file
 
+	createScripts: ->
+		@template "scripts/_template.coffee", "scripts/template.coffee"
+		@template "scripts/_template.js", "scripts/template.js"
+
 	createEmptyFolders: ->
 		folders = [
 			"scripts"

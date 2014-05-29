@@ -4,6 +4,8 @@
 
 *generator-joomla-admin-template* is a [yeoman](http://yeoman) generator, which allows you to automatically generate [joomla](https://github.com/joomla/joomla-cms) administrator templates for your back-end.
 
+![joomla-admin-generation](https://cloud.githubusercontent.com/assets/1750837/3113939/afb2477a-e6e7-11e3-89ae-c8f5399d24fa.gif)
+
 # Features
 
 * **Accessified**.  I added WAI-ARIA roles to the markup
@@ -29,22 +31,24 @@
 * Ready to go with my [sass boilerplate](https://github.com/srsgores/sass-boilerplate).
 * **Bootstrap-free**!  But you can still use bootstrap if you really want to.
 
+Generates:
+
+* Internationalized language strings in the ``language`` folder (no more editing the ``language.ini`` files!)
+* PHPDoc comments and header comments
+* The entire ``templateDetails.xml`` file
+* ``bower.json`` config file
+* ``package.json`` config files for build processes
+* Styles - SASS or LESS
+
 ## Quick Start
 
 1. Install [nodejs](http://nodejs.org)
 2. (Windows) Restart
 3. Install [yeoman](http://yeoman.io):
-```bash
-$ npm install -g yo
-```
+```bash $ npm install -g yo```
 4. Install *generator-joomla-admin-template* **globally** from npm:
-```bash
-$ npm install -g generator-joomla-admin-template
-```
-5. Run the generator:
-```bash
-$ yo joomla-admin-template
-```
+```bash $ npm install -g generator-joomla-admin-template```
+5. Run the generator: ```bash $ yo joomla-admin-template```
 
 ## FAQ
 
