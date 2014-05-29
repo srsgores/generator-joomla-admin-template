@@ -108,11 +108,9 @@ $stickyToolbar = $this->params->get("stickyToolbar", "1");
 									<i class = "icon-user"></i>
 									<strong><?php echo $user->name; ?></strong>
 								</li>
-								<li class = "divider"></li>
 								<li>
 									<a href = "index.php?option=com_admin&task=profile.edit&id=<?php echo $user->id; ?>"><?php echo JText::_("TPL_<%= _.slugify(name).toUpperCase() %>_EDIT_ACCOUNT"); ?></a>
 								</li>
-								<li class = "divider"></li>
 								<li>
 									<a href = "<?php echo JRoute::_("index.php?option=com_login&task=logout&" . JSession::getFormToken() . "=1"); ?>"><?php echo JText::_("TPL_<%= _.slugify(name).toUpperCase() %>_LOGOUT"); ?></a>
 								</li>

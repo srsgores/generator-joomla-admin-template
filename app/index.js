@@ -75,7 +75,7 @@
         }, {
           type: "confirm",
           name: "sassBoilerplate",
-          message: "Use my sass boilerplate to quickly create base styles?"
+          message: "Use my sass boilerplate to quickly create base styles? (Otherwise use LESS)"
         }
       ];
       return this.prompt(prompts, (function(props) {
@@ -128,28 +128,32 @@
       }
       return _results;
     },
-    createStyles: function() {
-      switch (this.sassBoilerplate) {
-        case true:
-          this.template("styles/sass/template.scss", "styles/sass/template.scss");
-          this.template("styles/sass/template-rtl.scss", "styles/sass/template-rtl.scss");
-          return this.template("styles/sass/helpers/_icons.scss", "styles/sass/helpers/_icons.scss");
-        default:
-          this.template("styles/less/template.less", "styles/less/template.less");
-          this.template("styles/less/template-rtl.less", "styles/less/template-rtl.less");
-          this.template("styles/less/helpers/icomoon.less", "styles/less/helpers/icomoon.less");
-          return this.template("styles/less/helpers/variables.less", "styles/less/helpers/variables.less");
-      }
-    },
     createEmptyFolders: function() {
       var folders;
-      folders = ["scripts", "styles", "html", "bower_components"];
+      folders = ["scripts", "styles", "styles/css", "language", "language/en-GB", "html", "bower_components"];
       return folders.forEach((function(_this) {
         return function(folderName) {
           _this.mkdir(folderName);
           return _this.template("_index.html", folderName + "/index.html");
         };
       })(this));
+    },
+    createStyles: function() {
+      switch (this.sassBoilerplate) {
+        case true:
+          this.template("styles/sass/template.scss", "styles/sass/template.scss");
+          this.template("styles/sass/template-rtl.scss", "styles/sass/template-rtl.scss");
+          this.template("styles/sass/helpers/_icons.scss", "styles/sass/helpers/_icons.scss");
+          this.copy("config.rb", "config.rb");
+          break;
+        default:
+          this.template("styles/less/template.less", "styles/less/template.less");
+          this.template("styles/less/template-rtl.less", "styles/less/template-rtl.less");
+          this.template("styles/less/helpers/icomoon.less", "styles/less/helpers/icomoon.less");
+          this.template("styles/less/helpers/variables.less", "styles/less/helpers/variables.less");
+      }
+      this.copy("styles/css/template.css", "styles/css/template.css");
+      return this.copy("styles/css/template-rtl.css", "styles/css/template-rtl.css");
     }
   });
 

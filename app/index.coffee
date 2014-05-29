@@ -73,7 +73,7 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 			{
 				type: "confirm"
 				name: "sassBoilerplate"
-				message: "Use my sass boilerplate to quickly create base styles?"
+				message: "Use my sass boilerplate to quickly create base styles? (Otherwise use LESS)"
 			}
 		]
 		@prompt prompts, ((props) ->
@@ -127,27 +127,34 @@ JoomlaAdminTemplateGenerator = yeoman.generators.Base.extend(
 		for file in files
 			@copy file, file
 
-	createStyles: ->
-		switch (@sassBoilerplate)
-			when true
-				@template "styles/sass/template.scss", "styles/sass/template.scss"
-				@template "styles/sass/template-rtl.scss", "styles/sass/template-rtl.scss"
-				@template "styles/sass/helpers/_icons.scss", "styles/sass/helpers/_icons.scss"
-			else
-				@template "styles/less/template.less", "styles/less/template.less"
-				@template "styles/less/template-rtl.less", "styles/less/template-rtl.less"
-				@template "styles/less/helpers/icomoon.less", "styles/less/helpers/icomoon.less"
-				@template "styles/less/helpers/variables.less", "styles/less/helpers/variables.less"
 	createEmptyFolders: ->
 		folders = [
 			"scripts"
 			"styles"
+			"styles/css"
+			"language"
+			"language/en-GB"
 			"html"
 			"bower_components"
 		]
 		folders.forEach (folderName) =>
 			@mkdir folderName
 			@template "_index.html", folderName + "/index.html"
+
+	createStyles: ->
+		switch (@sassBoilerplate)
+			when true
+				@template "styles/sass/template.scss", "styles/sass/template.scss"
+				@template "styles/sass/template-rtl.scss", "styles/sass/template-rtl.scss"
+				@template "styles/sass/helpers/_icons.scss", "styles/sass/helpers/_icons.scss"
+				@copy "config.rb", "config.rb"
+			else
+				@template "styles/less/template.less", "styles/less/template.less"
+				@template "styles/less/template-rtl.less", "styles/less/template-rtl.less"
+				@template "styles/less/helpers/icomoon.less", "styles/less/helpers/icomoon.less"
+				@template "styles/less/helpers/variables.less", "styles/less/helpers/variables.less"
+		@copy "styles/css/template.css", "styles/css/template.css"
+		@copy "styles/css/template-rtl.css", "styles/css/template-rtl.css"
 )
 
 module.exports = JoomlaAdminTemplateGenerator

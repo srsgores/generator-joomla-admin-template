@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN""http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
 <extension version = "3.1" type = "template" client = "administrator">
-	<name><%= _.slugify(name)%></name>
+	<name><%= name %></name>
 	<creationDate><%= currentDate %></creationDate>
 	<author><%= authorName %></author>
 	<authorEmail><%= authorEmail %></authorEmail>
@@ -24,12 +24,16 @@
 		<filename>apple-touch-icon-precomposed.png</filename>
 		<filename>browserconfig.xml</filename>
 		<filename>crossdomain.xml</filename>
+		<filename>bower.json</filename>
+		<filename>package.json</filename>
 		<filename>tile.png</filename>
 		<filename>tile-wide.png</filename>
+		<% if (sassBoilerplate) { %><filename>config.rb</filename><% } %>
 		<folder>html</folder>
 		<folder>scripts</folder>
 		<folder>language</folder>
 		<folder>styles</folder>
+		<folder>bower_components</folder>
 	</files>
 	<positions>
 		<position>menu</position>
